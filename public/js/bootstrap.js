@@ -5,7 +5,7 @@ define(function(require) {
     var ctrl = require('controllers/LookupCtrl');
     var inputArea = require('directives/inputArea');
     var mapArea = require('directives/mapArea');
-    var mapsProvider = require('modules/maps')
+    var mapsProvider = require('providers/maps')
 
     angular.bootstrap(document.getElementById('main'), ['lookup']);
 });
