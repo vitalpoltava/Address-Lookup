@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Address LookUp</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+    <div id="main">
+        <article class="container" ng-controller="LookupCtrl">
+            <div class="main_line row">
+                <section input-area class="left col-md-3"></section>
+                <section map-area class="right col-md-9"></section>
+            </div>
+        </article>
+    </div>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAfB_nkbFaTJ11Ib0Yaaw61Mqs9Cs-r8Rw&sensor=true"></script>
+    <script src="js/libs/require.js" data-main="js/main.js"></script>
+</body>
+</html>

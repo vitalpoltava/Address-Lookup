@@ -1,0 +1,5 @@
+<article class="stat_view">
+    <input id="inputAddress" class="inputAddress" type="text" ng-keyup="$event.keyCode == 13 ? findAddress(inputEl) : null" autofocus placeholder="Enter address here"/>
+    <div ng-if="isError" class="error">{{error_message}}</div>
+    <input type="button" class="btn btn-primary" value="Find" ng-click="findAddress(inputEl)"/>
+</article>
