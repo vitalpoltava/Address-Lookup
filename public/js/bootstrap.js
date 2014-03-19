@@ -1,4 +1,4 @@
-define(function(require, angular) {
+define(function(require) {
     'use strict';
     var angular = require('angular');
     var lookup = require('modules/app');
