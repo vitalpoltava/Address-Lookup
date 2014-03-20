@@ -12,17 +12,17 @@ define(function(require) {
         var hideErrorMsg = function() {
             $scope.isError = false;
         };
+        var catchEmptyError = function (el) {
+            showErrorMsg('No address provided!');
+            $timeout(hideErrorMsg, 2000);
+            el.focus();
+        };
         var validateInput = function(value) {
             return !!value;
         };
         var initLookup = function(addr) {
             $scope.isError = false;
             maps.lookup(addr);
-        };
-        var catchEmptyError = function (el) {
-            showErrorMsg('No address provided!');
-            $timeout(hideErrorMsg, 2000);
-            el.focus();
         };
 
         // add public API for directives
