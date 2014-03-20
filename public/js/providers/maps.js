@@ -5,7 +5,7 @@ define(function(require) {
     /**
      * Provider, which implements Google Maps API to the system
      */
-    return app.factory('maps', function() {
+    return app.factory('maps', function($rootScope) {
 
         /**
          *  Private area
@@ -24,9 +24,10 @@ define(function(require) {
             return map;
         };
 
-        var codeAddress = function(address) {
+        var codeAddress = function(address, scope, errHandler) {
             var marker;
             geocoder.geocode( { 'address': address}, function(results, status) {
+                var errMsg = "Geocode was not successful for the following reason: ";
                 if (status == google.maps.GeocoderStatus.OK) {
                     marker = new google.maps.Marker({
                         map: map,
@@ -34,7 +35,9 @@ define(function(require) {
                         position: results[0].geometry.location
                     });
                 } else {
-                    alert("Geocode was not successful for the following reason: " + status);
+                    scope.$apply(function(){
+                        errHandler(errMsg + status, 4000);
+                    });
                 }
             });
         };

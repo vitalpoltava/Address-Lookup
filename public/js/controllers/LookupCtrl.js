@@ -5,16 +5,16 @@ define(function(require) {
     return app.controller('LookupCtrl', function($scope, $timeout, maps) {
 
         // helpers
-        var showErrorMsg = function(msg) {
-            $scope.isError = true;
-            $scope.error_message = msg;
-        };
         var hideErrorMsg = function() {
             $scope.isError = false;
         };
+        var showErrorMsg = function(msg, delay) {
+            $scope.isError = true;
+            $scope.error_message = msg;
+            $timeout(hideErrorMsg, delay || 2000);
+        };
         var catchEmptyError = function (el) {
             showErrorMsg('No address provided!');
-            $timeout(hideErrorMsg, 2000);
             el.focus();
         };
         var validateInput = function(value) {
@@ -22,15 +22,16 @@ define(function(require) {
         };
         var initLookup = function(addr) {
             $scope.isError = false;
-            maps.lookup(addr);
+            $scope.lookup(addr, $scope, showErrorMsg);
         };
 
         // add public API for directives
+        $scope.lookup = maps.lookup;
         $scope.showMap = maps.showMap;
         $scope.findAddress = function(el) {
             var addr = el.value;
             if (validateInput(addr)) {
-                initLookup(addr)
+                initLookup(addr);
             } else {
                 catchEmptyError(el);
             }
