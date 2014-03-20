@@ -2,6 +2,9 @@ define(function(require) {
     'use strict';
     var app = require('modules/app');
 
+    /**
+     * Provider, which implements Google Maps API to the system
+     */
     return app.factory('maps', function() {
 
         /**
@@ -10,6 +13,16 @@ define(function(require) {
         var map;
         var mapCenter = {lat: 51.261646, lng: 10.306272};
         var geocoder = new google.maps.Geocoder();
+
+        var showGMap = function(position, elId, zoom) {
+            var myLatlng = new google.maps.LatLng(position.lat, position.lng);
+            var mapOptions = {
+                center: myLatlng,
+                zoom: zoom || 6
+            };
+            map = new google.maps.Map(document.getElementById(elId), mapOptions);
+            return map;
+        };
 
         var codeAddress = function(address) {
             var marker;
@@ -24,18 +37,7 @@ define(function(require) {
                     alert("Geocode was not successful for the following reason: " + status);
                 }
             });
-        }
-
-        var showGMap = function(position, elId, zoom) {
-            var myLatlng = new google.maps.LatLng(position.lat, position.lng);
-            var mapOptions = {
-                center: myLatlng,
-                zoom: zoom || 6
-            };
-            map = new google.maps.Map(document.getElementById(elId), mapOptions);
-
-            return map;
-        }
+        };
 
         // External API
         return {
@@ -43,7 +45,7 @@ define(function(require) {
                 return showGMap(mapCenter, elId);
             },
 
-            geoCode: codeAddress
+            lookup: codeAddress
         };
     });
 });

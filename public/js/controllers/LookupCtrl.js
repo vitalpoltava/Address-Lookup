@@ -17,7 +17,7 @@ define(function(require) {
         };
         var initLookup = function(addr) {
             $scope.isError = false;
-            maps.geoCode(addr);
+            maps.lookup(addr);
         };
         var catchEmptyError = function (el) {
             showErrorMsg('No address provided!');
