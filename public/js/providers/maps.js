@@ -13,6 +13,9 @@ define(function(require) {
         var map;
         var mapCenter = {lat: 51.261646, lng: 10.306272};
         var geocoder = new google.maps.Geocoder();
+        var errMessages = {
+            'ZERO_RESULTS': 'Address Not Found!'
+        };
 
         var showGMap = function(position, elId, zoom) {
             var myLatlng = new google.maps.LatLng(position.lat, position.lng);
@@ -36,7 +39,7 @@ define(function(require) {
                     });
                 } else {
                     scope.$apply(function(){
-                        errHandler(errMsg + status, 4000);
+                        errHandler( errMessages[status] || (errMsg + status), 4000);
                     });
                 }
             });
