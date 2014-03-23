@@ -14,7 +14,7 @@ define(function(require) {
             $timeout(hideErrorMsg, delay || 2000);
         };
         var catchEmptyError = function (el) {
-            showErrorMsg('No address provided!');
+            showErrorMsg('No address provided');
             el.focus();
         };
         var validateInput = function(value) {

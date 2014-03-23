@@ -14,7 +14,7 @@ define(function(require) {
         var mapCenter = {lat: 51.261646, lng: 10.306272};
         var geocoder = new google.maps.Geocoder();
         var errMessages = {
-            'ZERO_RESULTS': 'Address Not Found!'
+            'ZERO_RESULTS': 'Address Not Found'
         };
 
         var showGMap = function(position, elId, zoom) {
