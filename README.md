@@ -8,4 +8,4 @@ Application places a marker on the address you entered in input field.
 Notes
 -----
 
-Implements AngularJS **Controller** to **Provider** "talking" in order to apply Controller's error handling to methods defined in Gmaps provider.
+Implements AngularJS **Controller** to **Provider** "talking" (using *promises*) in order to apply Controller's error handling to methods defined in Gmaps provider.
