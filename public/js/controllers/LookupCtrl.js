@@ -2,27 +2,33 @@ define(function(require) {
     'use strict';
     var app = require('modules/app');
 
-    return app.controller('LookupCtrl', function($scope, $timeout, maps) {
+    return app.controller('LookupCtrl', function($scope, $timeout, $q, maps) {
 
         // helpers
         var hideErrorMsg = function() {
             $scope.isError = false;
         };
+
         var showErrorMsg = function(msg, delay) {
             $scope.isError = true;
             $scope.error_message = msg;
             $timeout(hideErrorMsg, delay || 2000);
         };
+
         var catchEmptyError = function (el) {
             showErrorMsg('No address provided');
             el.focus();
         };
+
         var validateInput = function(value) {
             return !!value;
         };
+
         var initLookup = function(addr) {
+            var defer = $q.defer();
+            defer.promise.then(showErrorMsg);
             $scope.isError = false;
-            $scope.lookup(addr, $scope, showErrorMsg);
+            $scope.lookup(addr, defer);
         };
 
         // add public API for directives
