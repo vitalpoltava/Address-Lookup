@@ -27,7 +27,7 @@ define(function(require) {
             return map;
         };
 
-        var codeAddress = function(address, defer) {
+        var codeAddress = function(address, errPromise) {
             var marker;
             geocoder.geocode( { 'address': address}, function(results, status) {
                 var errMsg = "Geocode was not successful for the following reason: ";
@@ -38,7 +38,7 @@ define(function(require) {
                         position: results[0].geometry.location
                     });
                 } else {
-                    defer.resolve(errMessages[status] || (errMsg + status));
+                    errPromise.resolve(errMessages[status] || (errMsg + status));
                 }
             });
         };

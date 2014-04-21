@@ -25,10 +25,10 @@ define(function(require) {
         };
 
         var initLookup = function(addr) {
-            var defer = $q.defer();
-            defer.promise.then(showErrorMsg);
+            var errPromise = $q.defer();
+            errPromise.promise.then(showErrorMsg);
             $scope.isError = false;
-            $scope.lookup(addr, defer);
+            $scope.lookup(addr, errPromise);
         };
 
         // add public API for directives
